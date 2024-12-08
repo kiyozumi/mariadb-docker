@@ -3,12 +3,15 @@ services:
     image: mariadb:latest
     container_name: mariadb_container
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: sakila
+      MARIADB_USER: user
+      MARIADB_PASSWORD: user
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: sakila
       TZ: "Asia/Tokyo"
     volumes:
       - ./my.cnf:/etc/mariadb/conf.d/my.cnf
       - ./init:/docker-entrypoint-initdb.d
+      - ./db-data:/var/lib/mysql
     ports:
       - "3307:3306"
     restart: always
